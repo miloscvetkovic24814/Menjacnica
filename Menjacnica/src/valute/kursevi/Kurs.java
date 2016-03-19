@@ -71,6 +71,7 @@ public class Kurs {
 		return result;
 	}
 
+	// Kurs ce se porediti po datumu
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

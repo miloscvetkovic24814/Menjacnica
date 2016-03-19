@@ -9,7 +9,8 @@ public class Valuta {
 	private String naziv;
 	private String nazivSkr;
 	private LinkedList<Kurs> kurs; // Kurs ce pri unosenju biti sortiran po
-									// datumu.
+									// datumu. Ovaj atribut predstavlja kurseve
+									// jedne valute u razlicitim danima.
 
 	public String getNaziv() {
 		return naziv;
@@ -77,6 +78,7 @@ public class Valuta {
 		return result;
 	}
 
+	// Valute poredimo po skracenom nazivu, npr EUR
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
