@@ -8,14 +8,21 @@ public class Valuta {
 
 	private String naziv;
 	private String nazivSkr;
-	private LinkedList<Kurs> kurs;
+	private LinkedList<Kurs> kurs; // Kurs ce pri unosenju biti sortiran po
+									// datumu.
 
 	public String getNaziv() {
 		return naziv;
 	}
 
 	public void setNaziv(String naziv) {
-		this.naziv = naziv;
+		if (naziv == null) {
+			throw new NullPointerException("Greska u nazivu.");
+		} else if (naziv.isEmpty()) {
+			throw new IllegalArgumentException("Niste uneli naziv.");
+		} else {
+			this.naziv = naziv;
+		}
 	}
 
 	public String getNazivSkr() {
@@ -23,15 +30,38 @@ public class Valuta {
 	}
 
 	public void setNazivSkr(String nazivSkr) {
-		this.nazivSkr = nazivSkr;
+		if (nazivSkr == null) {
+			throw new NullPointerException("Greska u nazivu(skr).");
+		} else if (nazivSkr.isEmpty()) {
+			throw new IllegalArgumentException("Niste uneli naziv(skr).");
+		} else {
+			this.nazivSkr = nazivSkr;
+		}
 	}
 
 	public LinkedList<Kurs> getKurs() {
 		return kurs;
 	}
 
-	public void setKurs(LinkedList<Kurs> kurs) {
-		this.kurs = kurs;
+	public void setKurs(Kurs kurs) {
+		if (kurs == null) {
+			throw new NullPointerException("Greska u postavljanju kursa.");
+		} else if (this.kurs.isEmpty()) {
+			this.kurs.addFirst(kurs);
+			return;
+		} else {
+			boolean unet = false;
+			for (int i = 0; i < this.kurs.size(); i++) {
+				if (this.kurs.get(i).getDatum().after(kurs.getDatum())) {
+					this.kurs.add(i, kurs); // Odrzava poredak po datumu.
+					unet = true;
+					break;
+				}
+			}
+			if (!unet) {
+				this.kurs.addLast(kurs);
+			}
+		}
 	}
 
 	@Override

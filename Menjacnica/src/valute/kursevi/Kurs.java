@@ -14,7 +14,11 @@ public class Kurs {
 	}
 
 	public void setDatum(GregorianCalendar datum) {
-		this.datum = datum;
+		if (datum == null) {
+			throw new NullPointerException("Greska u datumu.");
+		} else {
+			this.datum = datum;
+		}
 	}
 
 	public double getProdajni() {
@@ -22,7 +26,11 @@ public class Kurs {
 	}
 
 	public void setProdajni(double prodajni) {
-		this.prodajni = prodajni;
+		if (prodajni > 0) {
+			this.prodajni = prodajni;
+		} else {
+			throw new IllegalArgumentException("Pogresan iznos.");
+		}
 	}
 
 	public double getKupovni() {
@@ -30,7 +38,11 @@ public class Kurs {
 	}
 
 	public void setKupovni(double kupovni) {
-		this.kupovni = kupovni;
+		if (kupovni > 0) {
+			this.kupovni = kupovni;
+		} else {
+			throw new IllegalArgumentException("Pogresan iznos.");
+		}
 	}
 
 	public double getSrednji() {
@@ -38,7 +50,11 @@ public class Kurs {
 	}
 
 	public void setSrednji(double srednji) {
-		this.srednji = srednji;
+		if (srednji > 0) {
+			this.srednji = srednji;
+		} else {
+			throw new IllegalArgumentException("Pogresan iznos.");
+		}
 	}
 
 	@Override
