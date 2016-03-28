@@ -19,13 +19,13 @@ public class Menjacnica implements MenjacnicaInterfejs {
 	public void dodavanjeKursaValuteZaOdredjeniDan(Valuta valuta, GregorianCalendar datum, double prodajni,
 			double kupovni, double srednji) {
 
-		Kurs pom = new Kurs();
-		pom.setDatum(datum);
-		pom.setProdajni(prodajni);
-		pom.setKupovni(kupovni);
-		pom.setSrednji(srednji);
 
 		for (Valuta trazenaValuta : valute) {
+			Kurs pom = new Kurs();
+			pom.setDatum(datum);
+			pom.setProdajni(prodajni);
+			pom.setKupovni(kupovni);
+			pom.setSrednji(srednji);
 			if (trazenaValuta.equals(valuta)) {
 				trazenaValuta.setKurs(pom);
 				return;
