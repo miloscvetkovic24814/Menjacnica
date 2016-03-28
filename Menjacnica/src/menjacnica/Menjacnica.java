@@ -19,17 +19,18 @@ public class Menjacnica implements MenjacnicaInterfejs {
 	public void dodavanjeKursaValuteZaOdredjeniDan(Valuta valuta, GregorianCalendar datum, double prodajni,
 			double kupovni, double srednji) {
 
-		Kurs k = new Kurs();
-		k.setDatum(datum);
-		k.setProdajni(prodajni);
-		k.setKupovni(kupovni);
-		k.setSrednji(srednji);
-
-		for (Valuta i : valute) {
-			if (i.getKurs().contains(k)) {
+		
+		Kurs noviKurs = new Kurs();
+		noviKurs.setDatum(datum);
+		noviKurs.setProdajni(prodajni);
+		noviKurs.setKupovni(kupovni);
+		noviKurs.setSrednji(srednji);
+		
+		for (int i = 0; i<valute.size(); i++){
+			if (valute.get(i).getKurs().contains(noviKurs)) {
 				throw new RuntimeException("Vec postoji kurs za taj dan.");
-			} else if (i.equals(valuta)) {
-				i.setKurs(k);
+			} else if (valute.get(i).equals(valuta)) {
+				valute.get(i).setKurs(noviKurs);
 				return;
 			}
 		}
