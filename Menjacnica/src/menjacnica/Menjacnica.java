@@ -19,15 +19,30 @@ public class Menjacnica implements MenjacnicaInterfejs {
 	public void dodavanjeKursaValuteZaOdredjeniDan(Valuta valuta, GregorianCalendar datum, double prodajni,
 			double kupovni, double srednji) {
 
-
-		for (Valuta trazenaValuta : valute) {
-			Kurs pom = new Kurs();
-			pom.setDatum(datum);
-			pom.setProdajni(prodajni);
-			pom.setKupovni(kupovni);
-			pom.setSrednji(srednji);
-			if (trazenaValuta.equals(valuta)) {
-				trazenaValuta.setKurs(pom);
+//<<<<<<< HEAD
+//
+//		for (Valuta trazenaValuta : valute) {
+//			Kurs pom = new Kurs();
+//			pom.setDatum(datum);
+//			pom.setProdajni(prodajni);
+//			pom.setKupovni(kupovni);
+//			pom.setSrednji(srednji);
+//			if (trazenaValuta.equals(valuta)) {
+//				trazenaValuta.setKurs(pom);
+//=======
+		
+		Kurs noviKurs = new Kurs();
+		noviKurs.setDatum(datum);
+		noviKurs.setProdajni(prodajni);
+		noviKurs.setKupovni(kupovni);
+		noviKurs.setSrednji(srednji);
+		
+		for (int i = 0; i<valute.size(); i++){
+			if (valute.get(i).getKurs().contains(noviKurs)) {
+				throw new RuntimeException("Vec postoji kurs za taj dan.");
+			} else if (valute.get(i).equals(valuta)) {
+				valute.get(i).setKurs(noviKurs);
+//>>>>>>> refs/heads/implementacijainterfejsa
 				return;
 			}
 		}
